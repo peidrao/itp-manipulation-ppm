@@ -117,7 +117,7 @@ void gravarImagem(Ptr_imagem ptr_imagem) {
 void filtroEscalaCinza(Ptr_imagem ptr_imagem) {
     for (int i = 0; i < ptr_imagem->alt; i++) {
         for (int j = 0; j < ptr_imagem->larg; j++) {
-            Pixel pixel = ptr_imagem->pixel[i][j];
+           // Pixel pixel = ptr_imagem->pixel[i][j];
             int mediaCores = (ptr_imagem->pixel[i][j].red + ptr_imagem->pixel[i][j].green + ptr_imagem->pixel[i][j].blue) / 3;
             ptr_imagem->pixel[i][j].red = mediaCores;
             ptr_imagem->pixel[i][j].green = mediaCores;
@@ -134,7 +134,7 @@ int ampliar(Ptr_imagem ptr_imagem, int amp) {
 
     int erro = alocarMemoria(&imagemTemp);
     if (erro != 0) {
-        printf("A ampliação requerida é muito grande. Digite uma ampliação menor: \n>");
+        printf("A ampliação requerida é muito grande. Digite uma ampliação menor: \n\t");
         return erro;
     }
 
@@ -220,6 +220,7 @@ void rotacao(Ptr_imagem ptr_imagem, int angulo) {
 void filtroNegativo(Ptr_imagem ptr_imagem) {
     for (int i = 0; i < ptr_imagem->alt; i++) {
         for (int j = 0; j < ptr_imagem->larg; j++) {
+        Pixel pixel = ptr_imagem->pixel[i][j];    
             ptr_imagem->pixel[i][j].red = (unsigned char) (255 - (int) ptr_imagem->pixel[i][j].red);
             ptr_imagem->pixel[i][j].green = (unsigned char) (255 - (int) ptr_imagem->pixel[i][j].green);
             ptr_imagem->pixel[i][j].blue = (unsigned char) (255 - (int) ptr_imagem->pixel[i][j].blue);
@@ -230,14 +231,14 @@ void filtroNegativo(Ptr_imagem ptr_imagem) {
 void filtroBinarizar(Ptr_imagem ptr_imagem, int binarizar) {
     
     for (int  i = 0; i < ptr_imagem->alt; i++){
-        for (int j  = 0; j < ptr_imagem->larg; i++){
-        int media = (ptr_imagem->pixel[i][j].red + ptr_imagem->pixel[i][j].green + ptr_imagem->pixel[i][j].blue) / 3;
-            if (media > binarizar) {
+        for (int j  = 0; j < ptr_imagem->larg; j++){
+        Pixel pixel = ptr_imagem->pixel[i][j];
+            int mediaCores = (ptr_imagem->pixel[i][j].red + ptr_imagem->pixel[i][j].green + ptr_imagem->pixel[i][j].blue) / 3;
+            if (mediaCores > binarizar) {
                 ptr_imagem->pixel[i][j].red = 255;
                 ptr_imagem->pixel[i][j].green = 255;
                 ptr_imagem->pixel[i][j].blue = 255;
-            }else
-            {
+            }else {
                 ptr_imagem->pixel[i][j].red = 0;
                 ptr_imagem->pixel[i][j].green = 0;
                 ptr_imagem->pixel[i][j].blue = 0;
@@ -313,6 +314,7 @@ void menu(Ptr_imagem ptr_imagem) {
                 valido = 1;
                 printf("Quanto deseja binarizar?  ");
                 scanf("%i", &binarizar);
+                filtroBinarizar(ptr_imagem, binarizar);
 
         } else if (strcmp(efeito, "sair") == 0) {
             printf("Saindo...\n");
