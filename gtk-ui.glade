@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkListStore" id="edicaoList">
+    <columns>
+      <!-- column-name edicao -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Escala de Cinza</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ampliação</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Redução</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Rotação</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Blurring</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sharpening</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Detecção de Bordas</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Binarização de Imagem</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Negativo</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Pixelização</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sobel</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Gaussiano</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkFileChooserDialog" id="fileChooser">
+    <property name="can_focus">False</property>
+    <property name="type_hint">dialog</property>
+    <child>
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkListStore" id="levelEdicao">
+    <columns>
+      <!-- column-name Genérico -->
+      <column type="gchararray"/>
+      <!-- column-name Rotação -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">1</col>
+        <col id="1" translatable="yes">90</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">2</col>
+        <col id="1" translatable="yes">180</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">3</col>
+        <col id="1" translatable="yes">270</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkWindow" id="window">
+    <property name="width_request">600</property>
+    <property name="height_request">134</property>
+    <property name="can_focus">False</property>
+    <property name="resizable">False</property>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkFixed" id="fixed">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkLabel" id="openImageErrorLabel">
+            <property name="width_request">546</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="justify">center</property>
+            <attributes>
+              <attribute name="foreground" value="#ffff3fff3fff"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">60</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="imagePath">
+            <property name="width_request">580</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="caps_lock_warning">False</property>
+            <property name="secondary_icon_name">document-open</property>
+            <property name="primary_icon_activatable">False</property>
+            <property name="primary_icon_sensitive">False</property>
+            <property name="placeholder_text" translatable="yes">Clique para escolher o caminho da imagem .ppm</property>
+            <signal name="button-release-event" handler="on_imagePath_button_release_event" swapped="no"/>
+            <signal name="icon-release" handler="on_imagePath_icon_release" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">28</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="openImageLabel">
+            <property name="width_request">100</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">4</property>
+            <property name="label" translatable="yes">Escolha a imagem a qual deseja editar</property>
+            <attributes>
+              <attribute name="foreground" value="#ffffffffffff"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">10</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="nextButton">
+            <property name="label" translatable="yes">Continuar</property>
+            <property name="width_request">90</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_nextButton_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">500</property>
+            <property name="y">90</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="backButton">
+            <property name="label" translatable="yes">Voltar</property>
+            <property name="width_request">70</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">center</property>
+            <property name="hexpand">False</property>
+            <signal name="clicked" handler="on_backButton_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">425</property>
+            <property name="y">90</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBox" id="edicaoComboBox">
+            <property name="width_request">335</property>
+            <property name="can_focus">False</property>
+            <property name="model">edicaoList</property>
+            <property name="has_entry">True</property>
+            <property name="entry_text_column">0</property>
+            <signal name="changed" handler="on_edicaoComboBox_changed" swapped="no"/>
+            <child internal-child="entry">
+              <object class="GtkEntry" id="edicaoComboBoxLabel">
+                <property name="can_focus">False</property>
+                <property name="placeholder_text" translatable="yes">Selecione a edição desejada</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">28</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="cancelButton">
+            <property name="label" translatable="yes">Cancelar</property>
+            <property name="width_request">85</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">center</property>
+            <property name="hexpand">False</property>
+            <signal name="clicked" handler="on_cancelButton_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">335</property>
+            <property name="y">90</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBox" id="levelEdicaoComboBox">
+            <property name="width_request">240</property>
+            <property name="can_focus">False</property>
+            <property name="model">levelEdicao</property>
+            <property name="has_entry">True</property>
+            <signal name="changed" handler="on_levelEdicaoComboBox_changed" swapped="no"/>
+            <child internal-child="entry">
+              <object class="GtkEntry" id="levelEdicaoComboBoxEntry">
+                <property name="can_focus">False</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">350</property>
+            <property name="y">28</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
